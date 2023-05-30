@@ -1,0 +1,18 @@
+export enum ECARD_TYPES {
+  VISA = "VISA",
+  MASTERCARD = "MASTERCARD",
+  AMERICAN_EXPRESS = "AMERICAN_EXPRESS",
+  DISCOVER = "DISCOVER",
+  JCB = "JCB",
+  MAESTRO = "MAESTRO",
+  UNSUPPORTED = "UNSUPPORTED",
+}
+
+export const cardTypesValidations = {
+  [ECARD_TYPES.VISA]: /^4[0-9]{12}(?:[0-9]{3})?$/,
+  [ECARD_TYPES.MASTERCARD]: /^5[1-5][0-9]{14}$/,
+  [ECARD_TYPES.AMERICAN_EXPRESS]: /^3[47][0-9]{13}$/,
+  [ECARD_TYPES.DISCOVER]: /^6(?:011|5[0-9]{2})[0-9]{12}$/,
+  [ECARD_TYPES.JCB]: /^(?:2131|1800|35\d{3})\d{11}$/,
+  [ECARD_TYPES.MAESTRO]: /^(?:5[0678]\d\d|6304|6390|67\d\d)\d{8,15}$/,
+};
