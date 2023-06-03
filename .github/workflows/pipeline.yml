@@ -83,14 +83,12 @@ jobs:
         with:
           node-version: "14.x"
       - name: "Install Dependencies"
-        run: yarn
-      - uses: actions/download-artifact@v2
-        with:
-          name: lib
-          path: lib
+        run: npm install
+      - name: "build"
+        run: npm run build
       - name: Publish package
         env:
           NODE_AUTH_TOKEN: ${{secrets.PACKAGE_TOKEN}}
         run: |
           echo "//registry.npmjs.org/:_authToken=\${NODE_AUTH_TOKEN}" > .npmrc
-          yarn npm publish
+          npm publish
