@@ -67,3 +67,30 @@ jobs:
           path: lib
       - name: Test
         run: yarn test
+  publish_to_github_packages:
+    needs: test
+    runs-on: ubuntu-latest
+    permissions:
+      packages: write
+
+    steps:
+      - name: "Checkout"
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+      - name: "Setup Node.js"
+        uses: actions/setup-node@v3
+        with:
+          node-version: "14.x"
+      - name: "Install Dependencies"
+        run: yarn
+      - uses: actions/download-artifact@v2
+        with:
+          name: lib
+          path: lib
+      - name: Publish package
+        env:
+          NODE_AUTH_TOKEN: ${{secrets.PACKAGE_TOKEN}}
+        run: |
+          echo "//registry.npmjs.org/:_authToken=\${NODE_AUTH_TOKEN}" > .npmrc
+          yarn npm publish
