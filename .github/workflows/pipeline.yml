@@ -45,8 +45,8 @@ jobs:
         run: yarn build
       - uses: actions/upload-artifact@v2
         with:
-          name: dist
-          path: dist
+          name: lib
+          path: lib
   test:
     needs: [lint, build]
     runs-on: ubuntu-latest
@@ -63,7 +63,7 @@ jobs:
         run: yarn
       - uses: actions/download-artifact@v2
         with:
-          name: dist
-          path: dist
+          name: lib
+          path: lib
       - name: Test
         run: yarn test
