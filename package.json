@@ -1,5 +1,5 @@
 {
-  "name": "cards",
+  "name": "card-info-lib",
   "version": "1.0.0",
   "description": "Get basic info about your debit/credit card",
   "main": "lib/card.js",
